@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestsService } from './services/requests.service';
+import { RequestsService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,9 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.req.fetchTask()
-        .subscribe((data) => {
-          console.log(data)
-        });
-    }
+    this.req.fetchTask()
+      .subscribe((data) => {
+        console.log(data)
+      });
+  }
 }

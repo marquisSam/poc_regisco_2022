@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "https://api-dev.regisco.ca",
+        "secure": true,
+        "changeOrigin" : true,
+        "logLevel": "debug"
+    }
+}
