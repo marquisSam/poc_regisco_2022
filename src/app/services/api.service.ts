@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class RequestsService {
+export class ApiService {
   
   constructor(private http :HttpClient) { }
 
