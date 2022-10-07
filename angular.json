@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-regisco": {
+    "poc_regisco_2022": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/test-regisco",
+            "outputPath": "dist/poc_regisco_2022",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,15 +68,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test-regisco:build"
+            "browserTarget": "poc_regisco_2022:build"
 
           },
           "configurations": {
             "production": {
-              "browserTarget": "test-regisco:build:production"
+              "browserTarget": "poc_regisco_2022:build:production"
             },
             "development": {
-              "browserTarget": "test-regisco:build:development"
+              "browserTarget": "poc_regisco_2022:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test-regisco:build"
+            "browserTarget": "poc_regisco_2022:build"
           }
         },
         "test": {

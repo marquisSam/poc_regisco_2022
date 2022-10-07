@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ApiService } from './services/api.service';
 import { fetchTasks } from './store/store.actions';
 
-import { Subscription, Observable } from 'rxjs';
-import { TaskListModel, TaskModel } from './store/store.models';
+import { Observable } from 'rxjs';
+import { TaskListModel } from './store/store.models';
 import { selectTaskList } from './store/store.selectors';
 import { AppState } from './store/app.state';
-// import { selectTasks } from './store/store.selectors';
-// import { tasksSelector } from './store/store.selectors';
 
 @Component({
   selector: 'app-root',
@@ -16,16 +13,16 @@ import { AppState } from './store/app.state';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'test-regisco';
+  title = 'poc_regisco_2022';
   constructor(
     private store : Store<AppState>
   ) {
+    //initiate fetch
     this.store.dispatch(fetchTasks());
-
   }
+
+  //List from api, async
   public taskList$ : Observable<TaskListModel> = this.store.select(selectTaskList);
   
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 }
