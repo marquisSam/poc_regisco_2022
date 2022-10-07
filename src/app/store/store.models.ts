@@ -4,3 +4,5 @@ export interface TaskModel {
     "deadline": string,
     "completedAt": string
 }
+
+export interface TaskListModel extends Array<TaskModel> {}
