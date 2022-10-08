@@ -10,5 +10,5 @@ export const fetchTasksSuccess = createAction(
 );
 export const fetchTasksFailure = createAction(
     '[TASK DATA] fetch task failure',
-    props<{ err : any }>()
+    props<{ fetchErrState : any }>()
 );

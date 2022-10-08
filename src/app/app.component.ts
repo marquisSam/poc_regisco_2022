@@ -4,7 +4,7 @@ import { fetchTasks } from './store/store.actions';
 
 import { Observable } from 'rxjs';
 import { TaskListModel } from './store/store.models';
-import { selectTaskList } from './store/store.selectors';
+import { selectFetchErrState, selectTaskList } from './store/store.selectors';
 import { AppState } from './store/app.state';
 
 @Component({
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   //List from api, async
   public taskList$ : Observable<TaskListModel> = this.store.select(selectTaskList);
+  public selectFetchErrState$ : Observable<any> = this.store.select(selectFetchErrState);
   
   ngOnInit(): void {}
 }

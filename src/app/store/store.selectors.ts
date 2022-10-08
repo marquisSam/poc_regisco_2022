@@ -8,3 +8,7 @@ export const selectTaskList = createSelector(
     selectTasksState,
     (state: TasksState) : TaskListModel => state.taskList
 );
+export const selectFetchErrState = createSelector(
+    selectTasksState,
+    (state: TasksState) : TaskListModel => state.fetchErrState
+);

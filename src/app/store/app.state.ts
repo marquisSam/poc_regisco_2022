@@ -1,7 +1,8 @@
 import { TaskListModel } from "./store.models";
 
 export interface TasksState {
-    taskList : TaskListModel
+    taskList : TaskListModel,
+    fetchErrState : []
 }
 
 // root store
