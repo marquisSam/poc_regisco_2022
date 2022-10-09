@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { storeEffect } from './store/store.effects';
 import { StoreModule } from '@ngrx/store';
 import {  storeReducer } from './store/store.reducers';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,11 +19,14 @@ import {  storeReducer } from './store/store.reducers';
   ],
   imports: [
     HttpClientModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
     StoreModule.forRoot({ tasks: storeReducer }),
     EffectsModule.forRoot([storeEffect]),
     BrowserModule
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

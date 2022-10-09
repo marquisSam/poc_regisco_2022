@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { TaskListModel } from './store/store.models';
 import { selectFetchErrState, selectTaskList } from './store/store.selectors';
 import { AppState } from './store/app.state';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { AppState } from './store/app.state';
 export class AppComponent implements OnInit {
   title = 'poc_regisco_2022';
   constructor(
+    private spinner: NgxSpinnerService,
     private store : Store<AppState>
   ) {
     //initiate fetch
@@ -25,5 +27,6 @@ export class AppComponent implements OnInit {
   public taskList$ : Observable<TaskListModel> = this.store.select(selectTaskList);
   public selectFetchErrState$ : Observable<any> = this.store.select(selectFetchErrState);
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

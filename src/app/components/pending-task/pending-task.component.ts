@@ -20,6 +20,7 @@ export class PendingTaskComponent implements OnInit {
   test = () => {
     console.log(this.taskList);
   }
+
   ngOnInit(): void {
 
   }

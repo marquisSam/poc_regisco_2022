@@ -1,2 +1,14 @@
-<p>pending-task works!</p>
-<button (click)="test()">test</button>
+<ngx-spinner [name]="'task-spinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+<div class="task-list-wrapper">
+
+    <p>pending-task works!</p>
+    
+    <ng-container *ngFor="let task of taskList">
+        <div>{{task.name}}</div>
+        <div>{{task.deadline}}</div>
+        <div>{{task.completedAt}}</div>
+        <hr>
+    </ng-container>
+    
+    <!-- <button (click)="test()">test</button> -->
+</div>

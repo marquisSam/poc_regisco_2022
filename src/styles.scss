@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: darkgrey;
+}
+section{
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+}
+.ngx-spinner-overlay{
+    border-radius: 12px;
+}

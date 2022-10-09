@@ -1,7 +1,9 @@
-<ng-container *ngIf="taskList$ | async as taskList">
-    <app-pending-task [taskList]="taskList"></app-pending-task>
-</ng-container>
-
+<section class="task_list_section">
+    <ng-container *ngIf="taskList$ | async as taskList">
+        <app-pending-task [taskList]="taskList"></app-pending-task>
+    </ng-container>
+</section>
+    
 <ng-container *ngIf="selectFetchErrState$ | async as err">
     <ng-container *ngIf="err?.status ">
         <p>Désolé, une erreur s'est produite lors de l'import de la liste :(</p>
