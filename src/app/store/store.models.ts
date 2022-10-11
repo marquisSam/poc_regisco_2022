@@ -1,17 +1,11 @@
-export interface TaskModel {
+import { Task } from "../class/task";
+
+export interface TaskCallPayloadModel {
     "id": number,
-    "name": string,
-    "deadline": string,
+    "name": string ,
+    "deadline": string ,
     "completedAt": string,
+} 
 
-    "deadlineTimestamp" : number,
-    "compAtTimestamp" : number
-    "isCompleted" : boolean,
-    "isLate" : boolean,
-    "isYesterday" : boolean,
-    "isToday" : boolean,
-    "isTomorrow" : boolean,
-    "dateLabel" : boolean,
-}
-
-export interface TaskListModel extends Array<TaskModel> {}
+export interface TaskListModel extends Array<Task> {}
+export interface TaskCallPayloadModelListModel extends Array<TaskCallPayloadModel> {}

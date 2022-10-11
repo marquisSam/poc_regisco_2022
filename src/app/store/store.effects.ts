@@ -6,6 +6,8 @@ import { map, catchError, switchMap, tap, take } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TimeService } from '../services/time.service';
+import { TaskCallPayloadModelListModel, TaskListModel } from './store.models';
+import { Task } from '../class/task';
 
 @Injectable()
 export class storeEffect {
@@ -25,15 +27,13 @@ export class storeEffect {
     }),
     switchMap(() => this.apiService.fetchTask()
       .pipe(
-        map(taskList => {
-          // adding the timestamp for an easyer sorting
-          taskList.map(item => {
-            // const [years, month, day] = createTimeStamp(item.deadline);
-            if(item.deadline) item.deadlineTimestamp = this.timeService.createTimeStamp(item.deadline);
-            if(item.completedAt) item.compAtTimestamp = this.timeService.createTimeStamp(item.completedAt);
-            return item
-          })
-          taskList.map(item => item.compAtTimestamp = new Date(item.completedAt).getTime())
+        map((taskListPayload : TaskCallPayloadModelListModel) => {
+
+          let taskList : TaskListModel = []
+          taskListPayload.forEach(element => {
+            taskList.push(new Task(element, this.timeService ))
+          });
+          
           return fetchTasksSuccess({taskList})
         }),
         catchError((fetchErrState) => of(fetchTasksFailure({fetchErrState})))
