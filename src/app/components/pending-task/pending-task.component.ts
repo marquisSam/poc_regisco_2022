@@ -12,16 +12,43 @@ import { selectTaskList } from 'src/app/store/store.selectors';
 })
 export class PendingTaskComponent implements OnInit {
   constructor() { 
-    this.taskList = [];
+    // this._taskList = [];
+    // this.lateTasksList = [];
+    // this.toComeTasksList = [];
+    // this.completedTaskList = [];
   }
+  // _taskList : TaskListModel
   
-  @Input() taskList : TaskListModel;
+  @Input('taskList') set taskList(value: TaskListModel) {
+    console.log(value)
+    // this._taskList = value;
 
-  test = () => {
-    console.log(this.taskList);
+    value.forEach(task => {
+        if(task.isLate && !task.completedAt) this.lateTasksList.push(task)
+        if(!task.isLate && !task.completedAt) this.toComeTasksList.push(task)
+        if(task.completedAt) this.completedTaskList.push(task)
+    });
   }
+  // get taskList(): TaskListModel {
+  //   return this._taskList;
+  // }
 
+
+  lateTasksList : TaskListModel = [];
+  toComeTasksList : TaskListModel = [];
+  completedTaskList : TaskListModel = [];
+
+  showCompletedTaks : boolean = false;
+
+  // private sort = (list) : void => {
+
+  // }
+
+
+
+  
   ngOnInit(): void {
+    console.log(this.taskList);
 
   }
 }

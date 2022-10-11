@@ -1,4 +1,6 @@
 :host{
+    padding: 30px 20px;
+    box-sizing: border-box;
     margin: auto;
     display: block;
     width: 100%;
@@ -7,4 +9,69 @@
     min-height: 508px;
     border-radius: 12px;
     background-color: #fff;
+}
+hr{
+    margin: 10px 0;
+    background-color: #EEEEEE;
+    // border-top: 1px solid #EEEEEEed;
+}
+h1{
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0;
+    margin-bottom: 18px;
+}
+h2{
+    font-family: var(--main-font);
+    font-weight: 500;
+    
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 20px
+}
+.list-header-wrapper{
+    display: flex;
+    align-items: center;
+    .task-number{
+        font-family: var(--main-font);
+        height: 15px;
+        width: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 15px;
+        margin-left: 5px;
+        text-align: center;
+        background-color: var(--light-background);
+        border-radius: 20px;
+    }
+    &.warning{
+        color: var(--warning-color);
+        .task-number{
+            background-color: var(--warning-color);
+            color: #fff;
+        }
+    }
+}
+
+.task{
+    border-top: 1px solid #EEEEEE;
+    display: flex;
+    font-size: 16px;
+    font-family: var(--main-font);
+    padding: 10px 5px 10px 30px;
+    font-weight: 400;
+    .task-name{
+        margin-right: auto;
+        line-height: 20px;
+    }
+    .task-date{
+        &.warning{
+            color: var(--warning-color);
+        }
+    }
+    &:last-of-type{
+        border-bottom: 1px solid #EEEEEE;
+    }
 }
