@@ -65,13 +65,34 @@ h2{
     .task-name{
         margin-right: auto;
         line-height: 20px;
+        max-width: 270px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-right: 10px;
     }
     .task-date{
+        text-align: right;
+        white-space: nowrap;
         &.warning{
             color: var(--warning-color);
         }
     }
     &:last-of-type{
         border-bottom: 1px solid #EEEEEE;
+    }
+}
+
+@media (max-width: 355px) {
+    .task{
+        flex-direction: column;
+        .task-name{
+            white-space:inherit;
+        }
+        .task-date{
+            white-space:inherit;
+            margin-top: 5px;
+            text-align: left;
+        }
     }
 }
