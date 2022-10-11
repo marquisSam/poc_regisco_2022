@@ -11,7 +11,7 @@
             <ng-container *ngFor="let task of lateTasksList">
                 <div class="task">
                     <div class="task-name">{{task.name}}</div>
-                    <div class="task-date warning">{{task.deadlineTimestamp }}</div>
+                    <div class="task-date warning">{{ task.deadlineTimestamp | timeFormat}}</div>
                 </div>
             </ng-container>
         </div>
@@ -25,7 +25,7 @@
             <ng-container *ngFor="let task of toComeTasksList">
                 <div class="task">
                     <div class="task-name">{{task.name}}</div>
-                    <div class="task-date">{{task.deadlineTimestamp }}</div>
+                    <div class="task-date">{{task.deadlineTimestamp | timeFormat}}</div>
                 </div>
             </ng-container>
         </div>
@@ -40,7 +40,7 @@
                 <ng-container *ngFor="let task of completedTaskList">
                     <div class="task">
                         <div class="task-name">{{task.name}}</div>
-                        <div class="task-date">{{task.deadlineTimestamp }}</div>
+                        <div class="task-date">{{task.deadlineTimestamp | timeFormat}}</div>
                     </div>
                 </ng-container>
             </div>

@@ -12,10 +12,12 @@ import { StoreModule } from '@ngrx/store';
 import {  storeReducer } from './store/store.reducers';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TimeFormatPipe } from './pipes/time-format.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    PendingTaskComponent
+    PendingTaskComponent,
+    TimeFormatPipe
   ],
   imports: [
     HttpClientModule,
