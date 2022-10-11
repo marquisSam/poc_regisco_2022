@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Task } from 'src/app/class/task';
 import { AppState } from 'src/app/store/app.state';
 import { TaskListModel } from 'src/app/store/store.models';
 import { selectTaskList } from 'src/app/store/store.selectors';
@@ -21,18 +22,17 @@ export class PendingTaskComponent implements OnInit {
   
   @Input('taskList') set taskList(value: TaskListModel) {
     console.log(value)
-    // this._taskList = value;
 
     value.forEach(task => {
         if(task.isLate && !task.completedAt) this.lateTasksList.push(task)
         if(!task.isLate && !task.completedAt) this.toComeTasksList.push(task)
         if(task.completedAt) this.completedTaskList.push(task)
     });
-  }
-  // get taskList(): TaskListModel {
-  //   return this._taskList;
-  // }
 
+    this.lateTasksList = this.filterByDate("ascending", this.lateTasksList);
+    this.toComeTasksList = this.filterByDate("ascending", this.toComeTasksList);
+    this.completedTaskList = this.filterByDate("ascending", this.completedTaskList);
+  }
 
   lateTasksList : TaskListModel = [];
   toComeTasksList : TaskListModel = [];
@@ -40,11 +40,17 @@ export class PendingTaskComponent implements OnInit {
 
   showCompletedTaks : boolean = false;
 
-  // private sort = (list) : void => {
-
-  // }
-
-
+  filterByDate(byCreationDateFilter : string, taskListModel : TaskListModel){
+    return [...taskListModel].sort(( a : Task , b : Task ) : any => {
+      if(byCreationDateFilter === "ascending"){
+        return a.deadlineTimestamp - b.deadlineTimestamp;
+      }else if(byCreationDateFilter === "descending"){
+        return b.deadlineTimestamp - a.deadlineTimestamp;
+      }else{
+        return a.deadlineTimestamp - b.deadlineTimestamp;
+      }
+    })
+  }
 
   
   ngOnInit(): void {
