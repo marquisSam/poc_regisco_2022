@@ -20,6 +20,7 @@ export class PendingTaskComponent implements OnInit {
   }
   // _taskList : TaskListModel
   
+  @Input() err$ : Observable<any> | null = null;
   @Input('taskList') set taskList(value: TaskListModel) {
     console.log(value)
 
@@ -33,6 +34,8 @@ export class PendingTaskComponent implements OnInit {
     this.toComeTasksList = this.filterByDate("ascending", this.toComeTasksList);
     this.completedTaskList = this.filterByDate("ascending", this.completedTaskList);
   }
+
+  // err$ : Observable<any>;
 
   lateTasksList : TaskListModel = [];
   toComeTasksList : TaskListModel = [];
