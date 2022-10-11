@@ -3,7 +3,7 @@ import { ApiService } from "../services/api.service";
 import { fetchTasksSuccess, fetchTasks, fetchTasksFailure } from "./store.actions";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, switchMap, tap, take } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TimeService } from '../services/time.service';
 import { TaskCallPayloadModelListModel, TaskListModel } from './store.models';
@@ -50,7 +50,7 @@ export class storeEffect {
     ofType(fetchTasksFailure),
     take(1),
     tap((err) => {
-      tap(()=>{this.spinner.hide('task-spinner')})
+      this.spinner.hide('task-spinner')
     })
   ));
 }

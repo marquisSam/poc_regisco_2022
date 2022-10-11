@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { TaskCallPayloadModel } from '../store/store.models';
 import { HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,6 @@ export class ApiService {
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*');
 
-  fetchTask = () => this.http.get<TaskCallPayloadModel[]>(this.apiUlrEndPoint, { 'headers': this.headers }).pipe(
-    tap(e => console.log("eeee", e))
-  )
+  fetchTask = () => this.http.get<TaskCallPayloadModel[]>(this.apiUlrEndPoint, { 'headers': this.headers });
   
 }

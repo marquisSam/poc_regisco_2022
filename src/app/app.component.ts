@@ -24,8 +24,6 @@ export class AppComponent implements OnInit {
 
   //List from api, async
   public taskList$ : Observable<TaskListModel> = this.store.select(selector.selectTaskList);
-  // public selectTaskToCome$ : Observable<any> = this.store.select(selector.selectTaskToCome);
-  
   public selectFetchErrState$ : Observable<any> = this.store.select(selector.selectFetchErrState);
   
   ngOnInit(): void {}
