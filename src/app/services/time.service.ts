@@ -24,25 +24,10 @@ export class TimeService {
     const beforeToday = dueTimeTT < this.getToday();
     return beforeToday && !this.isToday(dueTimeTT);
   }
-  // public isYesterday = (dueTimeTT : number) : boolean => {
-  //   const yesterday = moment().subtract(1, 'days').format('LL');
-  //   const taskTime = moment(dueTimeTT).format('LL');
-
-  //   return yesterday === taskTime ? true : false; 
-  // }
   private isToday = (dueTimeTT : number) : boolean => {
     const yesterday = moment().format('LL');
     const taskTime = moment(dueTimeTT).format('LL');
 
     return yesterday === taskTime ? true : false; 
   }
-  // public isTomorrow = (dueTimeTT : number) : boolean => {
-  //   const yesterday = moment().add(1, 'days').format('LL');
-  //   const taskTime = moment(dueTimeTT).format('LL');
-
-  //   return yesterday === taskTime ? true : false; 
-  // }
-  // public dateLabel = () => {
-
-  // }
 }
