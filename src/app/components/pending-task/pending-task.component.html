@@ -1,0 +1,64 @@
+<ngx-spinner [name]="'task-spinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+<img src="../../../assets/design.PNG" alt="design" [class.hidden]="!showDesign">
+
+<div class="task-list-wrapper">
+    
+    <h1>Liste des tâches</h1>
+    <ng-container *ngIf="err$ | async as err">
+        <ng-container *ngIf="err?.status ">
+            <p>Désolé, une erreur s'est produite lors de l'import de la liste ;(</p>
+            <div>{{"Error " + err?.status + ", " + err?.name}}</div>
+            <div>{{err?.message}}</div>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="lateTasksList.length > 0">
+        <div class="task-block">
+            <div class="list-header-wrapper warning">
+                <h2>En retard</h2><div class="task-number">{{lateTasksList.length}}</div>
+            </div>
+            <ng-container *ngFor="let task of lateTasksList">
+                <div class="task">
+                    <div class="task-name">{{task.name}}</div>
+                    <div class="task-date warning">{{ task.deadlineTimestamp | timeFormat}}</div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="toComeTasksList.length > 0">
+        <div class="task-block">
+            <div class="list-header-wrapper">
+                <h2>À venir</h2><div class="task-number">{{toComeTasksList.length}}</div>
+            </div>
+            <ng-container *ngFor="let task of toComeTasksList">
+                <div class="task">
+                    <div class="task-name">{{task.name}}</div>
+                    <div class="task-date">{{task.deadlineTimestamp | timeFormat}}</div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="showCompletedTaks">
+        <ng-container *ngIf="completedTaskList.length > 0">
+            <div class="task-block">
+                <div class="list-header-wrapper">
+                    <h2>Complétée{{completedTaskList.length > 1 ? "s" : ""}}</h2><div class="task-number">{{completedTaskList.length}}</div>
+                </div>
+                <ng-container *ngFor="let task of completedTaskList">
+                    <div class="task">
+                        <div class="task-name">{{task.name}}</div>
+                        <div class="task-date">{{task.deadlineTimestamp | timeFormat}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <div class="control">
+        <button (click)="reload()" >Reload</button>
+        <button (click)="showDesignToggle()">{{showDesign ? "Caché Design" : "Afficher Design"}}</button>
+        <button (click)="showCompletedTaksToggle()">{{!showCompletedTaks ? "Afficher Tâche complété" : "Cacher Tâche complété"}}</button>
+    </div>
+</div>

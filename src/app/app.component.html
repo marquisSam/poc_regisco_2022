@@ -1,0 +1,7 @@
+<section class="task_list_section">
+    <ng-container *ngIf="taskList$ | async as taskList">
+        <app-pending-task [err$]="selectFetchErrState$" [taskList]="taskList"></app-pending-task>
+    </ng-container>
+</section>
+
+
