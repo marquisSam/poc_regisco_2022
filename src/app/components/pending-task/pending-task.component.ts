@@ -1,29 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/class/task';
-import { AppState } from 'src/app/store/app.state';
 import { TaskListModel } from 'src/app/store/store.models';
-import { selectTaskList } from 'src/app/store/store.selectors';
-
+import { Store } from '@ngrx/store';
+import { fetchTasks } from 'src/app/store/store.actions';
 @Component({
   selector: 'app-pending-task',
   templateUrl: './pending-task.component.html',
   styleUrls: ['./pending-task.component.scss']
 })
 export class PendingTaskComponent implements OnInit {
-  constructor() { 
-    // this._taskList = [];
-    // this.lateTasksList = [];
-    // this.toComeTasksList = [];
-    // this.completedTaskList = [];
-  }
-  // _taskList : TaskListModel
+  constructor(private store : Store) {}
   
   @Input() err$ : Observable<any> | null = null;
   @Input('taskList') set taskList(value: TaskListModel) {
-    console.log(value)
-
     value.forEach(task => {
         if(task.isLate && !task.completedAt) this.lateTasksList.push(task)
         if(!task.isLate && !task.completedAt) this.toComeTasksList.push(task)
@@ -35,13 +25,23 @@ export class PendingTaskComponent implements OnInit {
     this.completedTaskList = this.filterByDate("ascending", this.completedTaskList);
   }
 
-  // err$ : Observable<any>;
-
   lateTasksList : TaskListModel = [];
   toComeTasksList : TaskListModel = [];
   completedTaskList : TaskListModel = [];
 
   showCompletedTaks : boolean = false;
+  showDesign : boolean = false;
+
+  showDesignToggle = () : void => {this.showDesign = this.showDesign ? false : true} 
+  showCompletedTaksToggle = () : void => {this.showCompletedTaks = this.showCompletedTaks ? false : true} 
+  
+  reload = () : void => {
+    this.lateTasksList = []
+    this.toComeTasksList = []
+    this.completedTaskList = []
+  
+    this.store.dispatch(fetchTasks());
+  } 
 
   filterByDate(byCreationDateFilter : string, taskListModel : TaskListModel){
     return [...taskListModel].sort(( a : Task , b : Task ) : any => {
@@ -55,9 +55,5 @@ export class PendingTaskComponent implements OnInit {
     })
   }
 
-  
-  ngOnInit(): void {
-    console.log(this.taskList);
-
-  }
+  ngOnInit(): void {}
 }

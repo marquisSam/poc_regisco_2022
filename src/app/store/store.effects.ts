@@ -23,34 +23,32 @@ export class storeEffect {
     ofType(fetchTasks),
     tap(() => {
       this.spinner.show('task-spinner')
-
     }),
     switchMap(() => this.apiService.fetchTask()
       .pipe(
         map((taskListPayload : TaskCallPayloadModelListModel) => {
-
-          let taskList : TaskListModel = []
+          let taskList : TaskListModel = [];
           taskListPayload.forEach(element => {
             taskList.push(new Task(element, this.timeService ))
           });
-          
           return fetchTasksSuccess({taskList})
         }),
         catchError((fetchErrState) => of(fetchTasksFailure({fetchErrState})))
       ))
   ));
+
   fetchTasksSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(fetchTasksSuccess),
-    take(1),
+    // take(5),
     tap(()=>{
       this.spinner.hide('task-spinner')
     })
-  ));
+  ),{dispatch: false});
+
   fetchTasksFailure$ = createEffect(() => this.actions$.pipe(
     ofType(fetchTasksFailure),
-    take(1),
     tap((err) => {
       this.spinner.hide('task-spinner')
     })
-  ));
+  ),{dispatch: false});
 }

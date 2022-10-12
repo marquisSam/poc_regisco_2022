@@ -6,7 +6,6 @@ import * as moment from 'moment';
 export class TimeFormatPipe implements PipeTransform {
 
   transform(value: number, ...args: unknown[]): string {
-    console.log(value)
     const taskTime = moment(value).format('LL');
     
     const yesterday = moment().subtract(1, 'days').format('LL');

@@ -1,9 +1,9 @@
 <ngx-spinner [name]="'task-spinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+<img src="../../../assets/design.PNG" alt="design" [class.hidden]="!showDesign">
 
 <div class="task-list-wrapper">
     
     <h1>Liste des tâches</h1>
-    
     <ng-container *ngIf="err$ | async as err">
         <ng-container *ngIf="err?.status ">
             <p>Désolé, une erreur s'est produite lors de l'import de la liste ;(</p>
@@ -44,7 +44,7 @@
         <ng-container *ngIf="completedTaskList.length > 0">
             <div class="task-block">
                 <div class="list-header-wrapper">
-                    <h2>À venir</h2><div class="task-number">{{completedTaskList.length}}</div>
+                    <h2>Complétée{{completedTaskList.length > 1 ? "s" : ""}}</h2><div class="task-number">{{completedTaskList.length}}</div>
                 </div>
                 <ng-container *ngFor="let task of completedTaskList">
                     <div class="task">
@@ -55,4 +55,10 @@
             </div>
         </ng-container>
     </ng-container>
+
+    <div class="control">
+        <button (click)="reload()" >Reload</button>
+        <button (click)="showDesignToggle()">{{showDesign ? "Caché Design" : "Afficher Design"}}</button>
+        <button (click)="showCompletedTaksToggle()">{{!showCompletedTaks ? "Afficher Tâche complété" : "Cacher Tâche complété"}}</button>
+    </div>
 </div>
